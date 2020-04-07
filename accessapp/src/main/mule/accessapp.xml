@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="821fc1d6-72be-402e-943b-3e3fba2e3b1d" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="accessappFlow" doc:id="ec840f26-48c5-48e9-9d04-37977b4d2b4d" >
+		<http:listener doc:name="Listener" doc:id="beb43ed8-701d-43ac-858c-25ab4f841416" config-ref="HTTP_Listener_config" path="/myAttribute"/>
+		<logger level="INFO" doc:name="Logger" doc:id="65253727-4b08-4c50-961e-cb8448d4be07" message="#[message.attributes.method]"/>
+	</flow>
+</mule>
